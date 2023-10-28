@@ -16,16 +16,10 @@ export default class Navbar extends Component {
                             <Link className="nav-link" aria-current="page" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/about">About</Link>
-                        </li>
-                        <li className="nav-item">
                             <Link className="nav-link" to="/business">Business</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/entertainment">Entertainment</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/general">General</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/health">Health</Link>
@@ -40,7 +34,6 @@ export default class Navbar extends Component {
                             <Link className="nav-link" to="/technology">Technology</Link>
                         </li>
                     </ul>
-
                 </div>
             </nav>
         )
