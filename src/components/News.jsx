@@ -1,9 +1,20 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import Spineer from './Spineer';
+import PropTypes from 'prop-types'
 
 export default class News extends Component {
+    static defaultProps = {
+        country: "in",
+        pageSize: 8,
+        category: "general",
+    }
 
+    static propTypes = {
+        country: PropTypes.string,
+        pageSize: PropTypes.number,
+        category: PropTypes.string,
+    }
     constructor() {
         super();
         this.state = {
@@ -16,7 +27,7 @@ export default class News extends Component {
     }
 
     async componentDidMount() {
-        let URL = `https://newsapi.org/v2/top-headlines?country=in&apiKey=a6e009a4dfcb456cb4b5b4abe72c6b23&page=1&pageSize=${this.props.pageSize}`;
+        let URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=a6e009a4dfcb456cb4b5b4abe72c6b23&page=1&pageSize=${this.props.pageSize}`;
         this.setState({
             loading: true
         })
@@ -30,7 +41,7 @@ export default class News extends Component {
     }
 
     handlePrevClick = async () => {
-        let URL = `https://newsapi.org/v2/top-headlines?country=in&apiKey=a6e009a4dfcb456cb4b5b4abe72c6b23&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
+        let URL = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&category={this.props.category}&apiKey=a6e009a4dfcb456cb4b5b4abe72c6b23&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
         this.setState({
             loading: true
         })
@@ -44,7 +55,7 @@ export default class News extends Component {
     }
 
     handleNextClick = async () => {
-        let URL = `https://newsapi.org/v2/top-headlines?country=in&apiKey=a6e009a4dfcb456cb4b5b4abe72c6b23&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+        let URL = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=a6e009a4dfcb456cb4b5b4abe72c6b23&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
         this.setState({
             loading: true
         })
@@ -60,7 +71,7 @@ export default class News extends Component {
     render() {
         return (
             <div className='container my-3'>
-                <h1 className='text-center'>ExpressFeed - Top Headlines</h1>
+                <h1 className='text-center' style={{margin:"18px 0px"}}>ExpressFeed - Top Headlines</h1>
                 {this.state.loading && <Spineer />}
                 <div className='row'>
                     {
